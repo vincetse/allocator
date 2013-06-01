@@ -11,3 +11,21 @@
 *.lai
 *.la
 *.a
+
+# Autotools files
+*.in
+config.h
+config.h.*
+autom4te.cache
+aclocal.m4
+Makefile
+.deps
+config.log
+config.status
+stamp-h1
+
+# VIM
+*.swp
+
+# binaries
+buffer_allocator_test
