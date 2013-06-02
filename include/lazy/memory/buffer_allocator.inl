@@ -26,60 +26,76 @@
 #include <bits/functexcept.h>
 
 namespace lazy {
-
-template<typename T>
-inline buffer_allocator<T>::buffer_allocator(typename buffer_allocator<T>::pointer buffer,
-        typename buffer_allocator<T>::size_type buffer_size) throw() :
-    m_buffer(buffer),
-    m_buffer_size(buffer_size),
-    m_nallocated(0)
-{
-
-}
-
-template<typename T>
-inline buffer_allocator<T>::buffer_allocator(const buffer_allocator<T>& alloc) throw() :
-    m_buffer(alloc.m_buffer),
-    m_buffer_size(alloc.m_buffer_size),
-    m_nallocated(alloc.m_nallocated)
+namespace memory {
+////////////////////////////////////////////////////////////////////////////////
+// buffer_allocator
+////////////////////////////////////////////////////////////////////////////////
+template <typename T>
+inline buffer_allocator<T>::buffer_allocator() throw() :
+    m_buffer_manager(m_buffer_manager_storage),
+    m_buffer_manager_storage(0, 0)
 {
     // NOP
 }
 
-template<typename T>
+template <typename T>
+inline buffer_allocator<T>::buffer_allocator(void* buffer,
+        typename buffer_allocator<T>::size_type buffer_size) throw() :
+    m_buffer_manager(m_buffer_manager_storage),
+    m_buffer_manager_storage(buffer, buffer_size)
+{
+    // NOP
+}
+
+template <typename T>
+inline buffer_allocator<T>::buffer_allocator(const buffer_allocator<T>& alloc) throw() :
+    m_buffer_manager(alloc.get_buffer_manager()),
+    m_buffer_manager_storage(0, 0)
+{
+    // NOP
+}
+
+template <typename T>
+template <typename U>
+inline buffer_allocator<T>::buffer_allocator(const buffer_allocator<U>& alloc) throw() :
+    m_buffer_manager(alloc.get_buffer_manager()),
+    m_buffer_manager_storage(0, 0)
+{
+    // NOP
+}
+
+template <typename T>
 inline buffer_allocator<T>::~buffer_allocator() throw()
 {
     // NOP
 }
 
-template<typename T>
+template <typename T>
 inline typename buffer_allocator<T>::pointer buffer_allocator<T>::address(
     typename buffer_allocator<T>::reference x) const
 {
     return &x;
 }
 
-template<typename T>
+template <typename T>
 inline typename buffer_allocator<T>::const_pointer buffer_allocator<T>::address(
     typename buffer_allocator<T>::const_reference x) const
 {
     return &x;
 }
 
-template<typename T>
+template <typename T>
 inline typename buffer_allocator<T>::pointer buffer_allocator<T>::allocate(
     typename buffer_allocator<T>::size_type n, typename buffer_allocator<T>::const_pointer)
 {
-    const size_type nallocated = m_nallocated + n;
-    if (nallocated > max_size()) {
-        std::__throw_bad_alloc();
-    }
-    m_nallocated = nallocated;
-    pointer cursor = static_cast<pointer>(m_buffer + (m_nallocated * sizeof(value_type)));
+    // assuming that sizeof() rounds up, so m_bytes_allocated will always be in the
+    // multiple to ensure alignment.
+    const size_type bytes = n * sizeof(T);
+    pointer const cursor = static_cast<pointer>(m_buffer_manager.allocate(bytes));
     return cursor;
 }
 
-template<typename T>
+template <typename T>
 inline void buffer_allocator<T>::deallocate(typename buffer_allocator<T>::pointer p,
     typename buffer_allocator<T>::size_type n)
 {
@@ -87,25 +103,63 @@ inline void buffer_allocator<T>::deallocate(typename buffer_allocator<T>::pointe
     // NOP?  TODO is it really noop or do we have to call the destructor?
 }
 
-template<typename T>
+template <typename T>
 inline typename buffer_allocator<T>::size_type buffer_allocator<T>::max_size() const throw()
 {
-    return static_cast<size_type>(m_buffer_size / sizeof(T));
+    return static_cast<size_type>(m_buffer_manager.buffer_size() / sizeof(T));
 }
 
-template<typename T>
+template <typename T>
 inline void buffer_allocator<T>::construct(typename buffer_allocator<T>::pointer p,
    const  typename buffer_allocator<T>::value_type& x)
 {
     ::new ((void*)p) value_type(x);
 }
 
-template<typename T>
+template <typename T>
 inline void buffer_allocator<T>::destroy(typename buffer_allocator<T>::pointer p)
 {
     p->~T();
 }
 
+template <typename T>
+inline buffer_manager& buffer_allocator<T>::get_buffer_manager() const
+{
+    return m_buffer_manager;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// operators
+////////////////////////////////////////////////////////////////////////////////
+template<typename T, typename U>
+inline bool operator==(const buffer_allocator<T>&, const buffer_allocator<U>&)
+{
+    // doing what std::allocator does
+    return true;
+}
+
+template<typename T>
+inline bool operator==(const buffer_allocator<T>&, const buffer_allocator<T>&)
+{
+    // doing what std::allocator does
+    return true;
+}
+
+template<typename T, typename U>
+inline bool operator!=(const buffer_allocator<T>&, const buffer_allocator<U>&)
+{
+    // doing what std::allocator does
+    return false;
+}
+
+template<typename T>
+inline bool operator!=(const buffer_allocator<T>&, const buffer_allocator<T>&)
+{
+    // doing what std::allocator does
+    return false;
+}
+
+} // namespace memory
 } // namespace lazy
 
 #endif // __LAZY_BUFFER_ALLOCATOR_INL__
