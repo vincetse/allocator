@@ -30,3 +30,4 @@ stamp-h1
 
 # binaries
 buffer_allocator_test
+buffer_allocator_container_test
