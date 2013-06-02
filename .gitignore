@@ -20,6 +20,7 @@ autom4te.cache
 aclocal.m4
 Makefile
 .deps
+configure
 config.log
 config.status
 stamp-h1

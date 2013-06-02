@@ -1,3 +1,4 @@
+TESTS_ENVIRONMENT="../bin/memcheck.sh"
 
 check_PROGRAMS= \
     buffer_allocator_test

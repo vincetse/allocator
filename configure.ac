@@ -7,7 +7,7 @@ AM_INIT_AUTOMAKE
 AC_CONFIG_SRCDIR([src/buffer_allocator_test.cpp])
 AC_CONFIG_HEADERS([config.h])
 
-CXXFLAGS+=" -Wall -Werror -std=c++0x -fPIC"
+CXXFLAGS+=" -Wall -Werror -std=c++0x -g"
 CPPFLAGS+=" -I../include"
 CPPFLAGS+=" -I/usr/local/include"
 LDFLAGS+=" -L/usr/local/lib"
