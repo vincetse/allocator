@@ -22,7 +22,6 @@
 #ifndef __LAZY_BUFFER_ALLOCATOR_INL__
 #define __LAZY_BUFFER_ALLOCATOR_INL__
 
-//#include <cstddef>
 #include <bits/functexcept.h>
 
 namespace lazy {
