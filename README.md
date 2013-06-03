@@ -40,9 +40,18 @@ This library was developed in an [Ubuntu Precise chroot](https://github.com/thel
 3. GNU Automake 1.11.3
 4. GNU Libtool 2.4.2
 5. GNU Make 3.81
-6. Boost 1.53.0
+6. GNU Valgrind 3.7.0
+7. Boost 1.53.0
 
-\#2-6 are used for unit testing and installing the files to the include directory.  You can always skip unit tests and manually copy the files to your include directory.
+\#2-7 are used for unit testing and installing the files to the include directory.  You can always skip unit tests and manually copy the files to your include directory.
+
+### Building
+
+This is a header-only library, so there is nothing to build.  However, unit tests need to be compiled to run.  Here are the steps to run after you clone the repository.
+
+    autoreconf
+    ./configure
+    make check
 
 ### Examples
 
