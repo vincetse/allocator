@@ -9,6 +9,7 @@
 #include <list>
 #include <ext/slist>
 #include <deque>
+#include <queue>
 #include <map>
 #include <tr1/unordered_map>
 #include <tr1/unordered_set>
@@ -200,6 +201,27 @@ BOOST_AUTO_TEST_CASE( stl_deque )
     BOOST_REQUIRE_EQUAL(d[0], 0);
     BOOST_REQUIRE_EQUAL(d[1], 1);
     BOOST_REQUIRE_THROW(d.resize(buffer_size), std::bad_alloc);
+}
+
+BOOST_AUTO_TEST_CASE( stl_queue )
+{
+    typedef int data_type;
+    typedef lazy::memory::buffer_allocator<data_type> allocator_type;
+    typedef std::deque<data_type, allocator_type> deque_type;
+    typedef std::queue<data_type, deque_type> queue_type;
+
+    const size_t buffer_size = 32 * 1024;
+    data_type buffer[buffer_size];
+    allocator_type allocator(buffer, sizeof(buffer));
+    deque_type d(allocator);
+    queue_type q(d);
+    BOOST_REQUIRE_NO_THROW(q.push(1));
+    BOOST_REQUIRE_NO_THROW(q.push(2));
+    BOOST_REQUIRE_EQUAL(q.front(), 1);
+    BOOST_REQUIRE_EQUAL(q.back(), 2);
+    BOOST_REQUIRE_NO_THROW(q.pop());
+    BOOST_REQUIRE_EQUAL(q.front(), 2);
+    BOOST_REQUIRE_EQUAL(q.back(), 2);
 }
 
 BOOST_AUTO_TEST_CASE( stl_map )
