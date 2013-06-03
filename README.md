@@ -27,7 +27,7 @@ This section needs to be expanded.  Any volunteers?
 
 | Class                          | Description |
 |--------------------------------|-------------|
-| `lazy::memory::buffer_manager`   | This is a simple wrapper class that cuts up a byte array of memory allocated from the stack or heap and make it available to classes allocating memory with `lazy::memory::buffer_allocator. |
+| `lazy::memory::buffer_manager`   | This is a simple wrapper class that cuts up a byte array of memory allocated from the stack or heap and make it available to classes allocating memory with `lazy::memory::buffer_allocator`. |
 | `lazy::memory::buffer_allocator` | A `std::allocator`-compatible class that can be used STL or STL-like containers. |
 
 
