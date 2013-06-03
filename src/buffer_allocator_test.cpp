@@ -53,7 +53,7 @@ BOOST_AUTO_TEST_CASE( buffer_size_is_honored )
     const size_t num_objects = 2;
     data_type buffer[num_objects];
     allocator_type allocator(buffer, buffer_size);
-    BOOST_REQUIRE_EQUAL(allocator.max_size(), 0);
+    BOOST_REQUIRE_EQUAL(allocator.max_size(), static_cast<size_t>(0));
     BOOST_REQUIRE_THROW(allocator.allocate(1), std::bad_alloc);
 }
 
