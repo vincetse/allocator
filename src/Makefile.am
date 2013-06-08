@@ -1,4 +1,4 @@
-TESTS_ENVIRONMENT="../bin/memcheck.sh"
+AM_TESTS_ENVIRONMENT="\valgrind --show-reachable=yes --leak-check=full"
 
 check_PROGRAMS= \
     buffer_allocator_test \
