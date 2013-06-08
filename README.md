@@ -47,7 +47,9 @@ These dependencies are used for unit testing and installing the file to the pref
 
 This is a header-only library, so there is nothing to build.  However, unit tests need to be compiled to run.  Here are the steps to run after you clone the repository.
 
-    autoreconf
+    aclocal
+    autoconf
+    automake --add-missing
     ./configure
     make check
 

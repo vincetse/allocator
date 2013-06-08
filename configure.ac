@@ -2,10 +2,9 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.59])
-AC_INIT([allocator], [0.1.0], [thelazyenginerd@gmail.com])
+AC_INIT([allocator], [0.1.0], [https://github.com/thelazyenginerd/allocator])
 AM_INIT_AUTOMAKE
 AC_CONFIG_SRCDIR([src/buffer_allocator_test.cpp])
-AC_CONFIG_HEADERS([config.h])
 
 CXXFLAGS+=" -Wall -Werror -std=c++0x -g"
 CPPFLAGS+=" -I../include"

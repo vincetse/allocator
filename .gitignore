@@ -24,6 +24,15 @@ configure
 config.log
 config.status
 stamp-h1
+AUTHORS
+ChangeLog
+INSTALL
+README
+missing
+install-sh
+NEWS
+depcomp
+ltmain.sh
 
 # VIM
 *.swp
