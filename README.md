@@ -33,17 +33,15 @@ This section needs to be expanded.  Any volunteers?
 
 ### Pre-requisites
 
-This library was developed in an [Ubuntu Precise chroot](https://github.com/thelazyenginerd/vroot) on a Debian Squeeze 6.0.7 virtual machine.  It may work in other environments, but I have not had the chance to test it, so please let me know if it works in other environments, or send me pull requests if you have patches to make it work in other environments.
+This library was developed in an Ubuntu 12.04 LTS [chroot](https://github.com/thelazyenginerd/vroot) on a Debian Squeeze 6.0.7 virtual machine, and tested in Debian Squeeze 6.0.7 and Debian Wheezy 7.0 chroots.  The following combinations are tested and known to work.  Please let me know if this works in other environments, or send pull requests if you got it to work in other environements.
 
-1. G++ 4.6.3
-2. GNU Autoconf 2.68
-3. GNU Automake 1.11.3
-4. GNU Libtool 2.4.2
-5. GNU Make 3.81
-6. GNU Valgrind 3.7.0
-7. Boost 1.53.0
+| Linux Distro     | G++   | GNU Autoconf | GNU Automake | GNU Libtool | GNU Make | GNU Valgrind | Boost  |
+|------------------|-------|--------------|--------------|-------------|----------|--------------|--------|
+| Debian 6.0.7     | 4.4.5 | 2.68         | 1.11.3       | 2.4.2       | 3.81     | 3.7.0        | 1.53.0 |
+| Debian 7.0       | 4.7.2 | 2.69         | 1.11.6       | 2.4.2       | 3.81     | 3.7.0        | 1.53.0 |
+| Ubuntu 12.04 LTS | 4.6.3 | 2.68         | 1.11.3       | 2.4.2       | 3.81     | 3.7.0        | 1.53.0 |
 
-\#2-7 are used for unit testing and installing the files to the include directory.  You can always skip unit tests and manually copy the files to your include directory.
+These dependencies are used for unit testing and installing the file to the prefix directory.  You can always skip unit tests and manually copy the files to your include directory.  I believe any G++ 4.x compiler will work but not G++ 3.x since there are some STL classes that may not have a parameter for the allocator in their constructors.
 
 ### Building
 
