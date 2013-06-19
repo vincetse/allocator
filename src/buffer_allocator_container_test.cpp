@@ -1,4 +1,4 @@
-#include "lazy/memory/buffer_allocator.hpp"
+#include "lazy/memory/buffer_allocator.h"
 #define BOOST_TEST_DYN_LINK
 #define BOOST_TEST_MAIN
 #define BOOST_TEST_MODULE BufferAllocatorTest

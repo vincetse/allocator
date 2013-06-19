@@ -19,8 +19,8 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-#ifndef __LAZY_BUFFER_ALLOCATOR_INL__
-#define __LAZY_BUFFER_ALLOCATOR_INL__
+#ifndef __LAZY_BUFFER_ALLOCATOR_TCC__
+#define __LAZY_BUFFER_ALLOCATOR_TCC__
 
 #include <bits/functexcept.h>
 
@@ -161,4 +161,4 @@ inline bool operator!=(const buffer_allocator<T>&, const buffer_allocator<T>&)
 } // namespace memory
 } // namespace lazy
 
-#endif // __LAZY_BUFFER_ALLOCATOR_INL__
+#endif // __LAZY_BUFFER_ALLOCATOR_TCC__

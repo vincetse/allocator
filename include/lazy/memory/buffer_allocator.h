@@ -19,11 +19,11 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-#ifndef __LAZY_BUFFER_ALLOCATOR_HPP__
-#define __LAZY_BUFFER_ALLOCATOR_HPP__
+#ifndef __LAZY_BUFFER_ALLOCATOR_H__
+#define __LAZY_BUFFER_ALLOCATOR_H__
 
 #include <cstdlib>
-#include <lazy/memory/buffer_manager.hpp>
+#include <lazy/memory/buffer_manager.h>
 
 namespace lazy {
 namespace memory {
@@ -123,6 +123,6 @@ bool operator!=(const buffer_allocator<T>&, const buffer_allocator<T>&);
 } // namespace memory
 } // namespace lazy
 
-#include "buffer_allocator.inl"
+#include "buffer_allocator.tcc"
 
-#endif // __LAZY_BUFFER_ALLOCATOR_HPP__
+#endif // __LAZY_BUFFER_ALLOCATOR_H__

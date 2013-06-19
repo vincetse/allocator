@@ -19,8 +19,8 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-#ifndef __LAZY_BUFFER_MANAGER_INL__
-#define __LAZY_BUFFER_MANAGER_INL__
+#ifndef __LAZY_BUFFER_MANAGER_TCC__
+#define __LAZY_BUFFER_MANAGER_TCC__
 
 #include <bits/functexcept.h>
 
@@ -71,4 +71,4 @@ inline void* buffer_manager::allocate(buffer_manager::size_type n)
 } // namespace memory
 } // namespace lazy
 
-#endif // __LAZY_BUFFER_MANAGER_INL__
+#endif // __LAZY_BUFFER_MANAGER_TCC__
