@@ -4,15 +4,6 @@ compiler:
 - gcc
 - clang
 
-matrix:
-  include:
-    - os: linux
-      dist: precise
-      sudo: false
-    - os: linux
-      dist: trusty
-      sudo: false
-
 addons:
   apt:
     packages:
