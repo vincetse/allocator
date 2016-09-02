@@ -10,9 +10,13 @@ addons:
     - g++
     - libboost-test-dev
     - make
+    - valgrind
 
 script:
 - autoreconf -if
 - ./configure
 - make
-- make check
+- valgrind
+    --show-reachable=yes
+    --leak-check=full
+    make check
