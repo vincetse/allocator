@@ -12,11 +12,17 @@ addons:
     - make
     - valgrind
 
+before_install
+- pip install --user cpp-coveralls
+
 script:
 - autoreconf -if
-- ./configure
+- ./configure --enable-gcov
 - make
 - valgrind
     --show-reachable=yes
     --leak-check=full
     make check
+
+after_success:
+- coveralls --exclude lib --exclude tests --gcov-options '\-lp'
