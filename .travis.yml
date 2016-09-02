@@ -21,7 +21,7 @@ script:
     --enable=performance,portability,information,style,missingInclude
     .
 - autoreconf -if
-- ./configure --enable-gcov
+- ./configure
 - make
 - valgrind
     --show-reachable=yes
@@ -29,4 +29,4 @@ script:
     make check
 
 after_success:
-- coveralls --exclude lib --exclude tests --gcov-options '\-lp'
+- coveralls --gcov-options '\-lp'
