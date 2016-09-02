@@ -31,4 +31,6 @@ script:
     make check
 
 after_success:
-- coveralls --gcov-options '\-lp'
+- if [[ "${CXX}" == "g++" ]]; then
+    coveralls --gcov-options '\-lp';
+  fi
