@@ -6,7 +6,7 @@ AC_INIT([allocator], [0.1.0], [https://github.com/vincetse/allocator])
 AM_INIT_AUTOMAKE
 AC_CONFIG_SRCDIR([src/buffer_allocator_test.cpp])
 
-CXXFLAGS+=" -Wall -Werror -std=c++0x -g"
+CXXFLAGS+=" -Wall -Werror -std=c++0x -g -O0 -fprofile-arcs -ftest-coverage"
 CPPFLAGS+=" -I../include"
 CPPFLAGS+=" -I/usr/local/include"
 LDFLAGS+=" -L/usr/local/lib"
