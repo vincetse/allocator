@@ -12,7 +12,7 @@ addons:
     - make
 
 script:
-- autoreconf
+- autoreconf -if
 - ./configure
 - make
 - make check
