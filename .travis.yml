@@ -18,7 +18,7 @@ before_install:
 
 script:
 - cppcheck
-    --enable=performance,portability,information,style
+    --enable=performance,portability,information,style,missingInclude
     .
 - autoreconf -if
 - ./configure --enable-gcov
