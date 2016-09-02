@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/vincetse/allocator.svg?branch=master)](https://travis-ci.org/vincetse/allocator) [![Coverage Status](https://coveralls.io/repos/github/vincetse/allocator/badge.svg?branch=master)](https://coveralls.io/github/vincetse/allocator?branch=master
+[![Build Status](https://travis-ci.org/vincetse/allocator.svg?branch=master)](https://travis-ci.org/vincetse/allocator)
+[![Coverage Status](https://coveralls.io/repos/github/vincetse/allocator/badge.svg?branch=master)](https://coveralls.io/github/vincetse/allocator?branch=master)
 
 memory-allocators
 =================
