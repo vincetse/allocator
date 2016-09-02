@@ -8,6 +8,9 @@ matrix:
     - os: linux
       dist: trusty
       sudo: false
+  compiler:
+    - gcc
+    - clang
 
 addons:
   apt:
