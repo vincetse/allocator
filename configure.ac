@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.59])
-AC_INIT([allocator], [0.1.0], [https://github.com/thelazyenginerd/allocator])
+AC_INIT([allocator], [0.1.0], [https://github.com/vincetse/allocator])
 AM_INIT_AUTOMAKE
 AC_CONFIG_SRCDIR([src/buffer_allocator_test.cpp])
 
