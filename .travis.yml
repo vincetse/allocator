@@ -21,7 +21,7 @@ script:
     --enable=performance,portability,information,style,missingInclude
     .
 - autoreconf -if
-- ./configure --enable-gcov
+- ./configure
 - make
 - valgrind
     --show-reachable=yes
