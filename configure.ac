@@ -15,7 +15,7 @@ LDFLAGS+=" -L/usr/local/lib"
 AC_PROG_CXX
 
 # Checks for libraries.
-#AC_CHECK_LIB([boost_unit_test_framework], [main])
+AC_CHECK_LIB([boost_unit_test_framework], [main])
 
 # Checks for header files.
 AC_LANG_PUSH([C++])
