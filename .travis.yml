@@ -7,6 +7,7 @@ addons:
     packages:
     - automake
     - autoconf
+    - cppcheck
     - g++
     - libboost-test-dev
     - make
@@ -16,6 +17,9 @@ before_install:
 - pip install --user cpp-coveralls
 
 script:
+- cppcheck
+    --enable=warning,performance
+    .
 - autoreconf -if
 - ./configure --enable-gcov
 - make
