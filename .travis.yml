@@ -1,0 +1,32 @@
+sudo: false
+
+language: cpp
+
+addons:
+  apt:
+    packages:
+    - automake
+    - autoconf
+    - cppcheck
+    - g++
+    - libboost-test-dev
+    - make
+    - valgrind
+
+before_install:
+- pip install --user cpp-coveralls
+
+script:
+- cppcheck
+    --enable=performance,portability,information,style,missingInclude
+    .
+- autoreconf -if
+- ./configure --enable-gcov
+- make
+- valgrind
+    --show-reachable=yes
+    --leak-check=full
+    make check
+
+after_success:
+- coveralls --exclude lib --exclude tests --gcov-options '\-lp'
