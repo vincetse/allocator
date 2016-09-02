@@ -2,6 +2,9 @@ sudo: false
 
 language: cpp
 
+os:
+- linux
+
 addons:
   apt:
     packages:
@@ -12,6 +15,15 @@ addons:
     - libboost-test-dev
     - make
     - valgrind
+
+matrix:
+  include:
+    - os: linux
+      dist: precise
+      sudo: false
+    - os: linux
+      dist: trusty
+      sudo: false
 
 before_install:
 - pip install --user cpp-coveralls
