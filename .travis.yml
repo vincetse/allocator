@@ -25,10 +25,7 @@ script:
 - autoreconf -if
 - ./configure
 - make
-- valgrind
-    --show-reachable=yes
-    --leak-check=full
-    make check
+- make check
 
 after_success:
 - if [[ "${CXX}" == "g++" ]]; then
