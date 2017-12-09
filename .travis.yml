@@ -70,7 +70,6 @@ matrix:
     addons:
       apt:
         sources:
-        - ubuntu-toolchain-r-test
         - llvm-toolchain-precise-3.6
         packages:
         - automake
@@ -87,18 +86,81 @@ matrix:
     addons:
       apt:
         sources:
-        - ubuntu-toolchain-r-test
         - llvm-toolchain-precise-3.7
         packages:
         - automake
         - autoconf
-        - clang-3.6
+        - clang-3.7
         - cppcheck
         - libboost-test-dev
         - make
         - valgrind
     env:
     - MATRIX_EVAL="CC=clang-3.7 && CXX=clang++-3.7"
+
+  - os: linux
+    addons:
+      apt:
+        sources:
+        - llvm-toolchain-precise-3.8
+        packages:
+        - automake
+        - autoconf
+        - clang-3.8
+        - cppcheck
+        - libboost-test-dev
+        - make
+        - valgrind
+    env:
+    - MATRIX_EVAL="CC=clang-3.8 && CXX=clang++-3.8"
+
+  - os: linux
+    addons:
+      apt:
+        sources:
+        - llvm-toolchain-precise-3.9
+        packages:
+        - automake
+        - autoconf
+        - clang-3.9
+        - cppcheck
+        - libboost-test-dev
+        - make
+        - valgrind
+    env:
+    - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
+
+  - os: linux
+    addons:
+      apt:
+        sources:
+        - llvm-toolchain-precise-4.0
+        packages:
+        - automake
+        - autoconf
+        - clang-4.0
+        - cppcheck
+        - libboost-test-dev
+        - make
+        - valgrind
+    env:
+    - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
+
+  - os: linux
+    addons:
+      apt:
+        sources:
+        - llvm-toolchain-precise-5.0
+        packages:
+        - automake
+        - autoconf
+        - clang-5.0
+        - cppcheck
+        - libboost-test-dev
+        - make
+        - valgrind
+    env:
+    - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
 
 before_install:
 - eval "${MATRIX_EVAL}"
