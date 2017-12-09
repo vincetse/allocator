@@ -3,6 +3,8 @@ language: cpp
 matrix:
   include:
   - os: linux
+    dist: trusty
+    compiler: gcc
     addons:
       apt:
         sources:
@@ -19,6 +21,8 @@ matrix:
     - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
 
   - os: linux
+    dist: trusty
+    compiler: gcc
     addons:
       apt:
         sources:
@@ -35,6 +39,8 @@ matrix:
     - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
 
   - os: linux
+    dist: trusty
+    compiler: gcc
     addons:
       apt:
         sources:
@@ -51,6 +57,8 @@ matrix:
     - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
 
   - os: linux
+    dist: trusty
+    compiler: gcc
     addons:
       apt:
         sources:
@@ -67,11 +75,13 @@ matrix:
     - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
 
   - os: linux
+    dist: trusty
+    compiler: clang
     addons:
       apt:
         sources:
-        - llvm-toolchain-trusty-3.5
         - ubuntu-toolchain-r-test
+        - llvm-toolchain-trusty-3.5
         packages:
         - automake
         - autoconf
@@ -84,11 +94,13 @@ matrix:
     - MATRIX_EVAL="CC=clang-3.5 && CXX=clang++-3.5"
 
   - os: linux
+    dist: trusty
+    compiler: clang
     addons:
       apt:
         sources:
-        - llvm-toolchain-trusty-3.6
         - ubuntu-toolchain-r-test
+        - llvm-toolchain-trusty-3.6
         packages:
         - automake
         - autoconf
@@ -101,11 +113,13 @@ matrix:
     - MATRIX_EVAL="CC=clang-3.6 && CXX=clang++-3.6"
 
   - os: linux
+    dist: trusty
+    compiler: clang
     addons:
       apt:
         sources:
-        - llvm-toolchain-trusty-3.7
         - ubuntu-toolchain-r-test
+        - llvm-toolchain-trusty-3.7
         packages:
         - automake
         - autoconf
@@ -118,11 +132,13 @@ matrix:
     - MATRIX_EVAL="CC=clang-3.7 && CXX=clang++-3.7"
 
   - os: linux
+    dist: trusty
+    compiler: clang
     addons:
       apt:
         sources:
-        - llvm-toolchain-trusty-3.8
         - ubuntu-toolchain-r-test
+        - llvm-toolchain-trusty-3.8
         packages:
         - automake
         - autoconf
@@ -135,11 +151,13 @@ matrix:
     - MATRIX_EVAL="CC=clang-3.8 && CXX=clang++-3.8"
 
   - os: linux
+    dist: trusty
+    compiler: clang
     addons:
       apt:
         sources:
-        - llvm-toolchain-trusty-3.9
         - ubuntu-toolchain-r-test
+        - llvm-toolchain-trusty-3.9
         packages:
         - automake
         - autoconf
@@ -152,11 +170,13 @@ matrix:
     - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
 
   - os: linux
+    dist: trusty
+    compiler: clang
     addons:
       apt:
         sources:
-        - llvm-toolchain-trusty-4.0
         - ubuntu-toolchain-r-test
+        - llvm-toolchain-trusty-4.0
         packages:
         - automake
         - autoconf
@@ -169,11 +189,13 @@ matrix:
     - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
 
   - os: linux
+    dist: trusty
+    compiler: clang
     addons:
       apt:
         sources:
-        - llvm-toolchain-trusty-5.0
         - ubuntu-toolchain-r-test
+        - llvm-toolchain-trusty-5.0
         packages:
         - automake
         - autoconf
