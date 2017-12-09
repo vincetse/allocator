@@ -1,19 +1,64 @@
 language: cpp
 
-compiler:
-- gcc
-- clang
+matrix:
+  include:
+  - os: linux
+    addons:
+      apt:
+        packages:
+        - automake
+        - autoconf
+        - cppcheck
+        - g++-4.9
+        - libboost-test-dev
+        - make
+        - valgrind
+    env:
+    - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
 
-addons:
-  apt:
-    packages:
-    - automake
-    - autoconf
-    - cppcheck
-    - g++
-    - libboost-test-dev
-    - make
-    - valgrind
+  - os: linux
+    addons:
+      apt:
+        packages:
+        - automake
+        - autoconf
+        - cppcheck
+        - g++-5
+        - libboost-test-dev
+        - make
+        - valgrind
+    env:
+    - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
+
+  - os: linux
+    addons:
+      apt:
+        packages:
+        - automake
+        - autoconf
+        - cppcheck
+        - g++-6
+        - libboost-test-dev
+        - make
+        - valgrind
+    env:
+    - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
+
+  - os: linux
+    addons:
+      apt:
+        packages:
+        - automake
+        - autoconf
+        - cppcheck
+        - g++7
+        - libboost-test-dev
+        - make
+        - valgrind
+    env:
+    - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
+
+
 
 before_install:
 - pip install --user cpp-coveralls
