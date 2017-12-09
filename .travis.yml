@@ -167,7 +167,7 @@ matrix:
         - make
         - valgrind
     env:
-    - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
+    - MATRIX_EVAL="CC=clang && CXX=clang++"
 
   - os: linux
     dist: trusty
