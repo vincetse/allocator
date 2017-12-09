@@ -70,8 +70,8 @@ matrix:
     addons:
       apt:
         sources:
-        - ubuntu-toolchain-r-test
         - llvm-toolchain-precise-3.6
+        - ubuntu-toolchain-r-test
         packages:
         - automake
         - autoconf
@@ -88,6 +88,7 @@ matrix:
       apt:
         sources:
         - llvm-toolchain-precise-3.7
+        - ubuntu-toolchain-r-test
         packages:
         - automake
         - autoconf
@@ -104,6 +105,7 @@ matrix:
       apt:
         sources:
         - llvm-toolchain-precise-3.8
+        - ubuntu-toolchain-r-test
         packages:
         - automake
         - autoconf
@@ -120,6 +122,7 @@ matrix:
       apt:
         sources:
         - llvm-toolchain-precise-3.9
+        - ubuntu-toolchain-r-test
         packages:
         - automake
         - autoconf
@@ -136,6 +139,7 @@ matrix:
       apt:
         sources:
         - llvm-toolchain-precise-4.0
+        - ubuntu-toolchain-r-test
         packages:
         - automake
         - autoconf
@@ -152,6 +156,7 @@ matrix:
       apt:
         sources:
         - llvm-toolchain-precise-5.0
+        - ubuntu-toolchain-r-test
         packages:
         - automake
         - autoconf
