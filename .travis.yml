@@ -3,25 +3,7 @@ language: cpp
 matrix:
   include:
   - os: linux
-    dist: trusty
-    compiler: gcc
-    addons:
-      apt:
-        sources:
-        - ubuntu-toolchain-r-test
-        packages:
-        - automake
-        - autoconf
-        - cppcheck
-        - g++-4.9
-        - libboost-test-dev
-        - make
-        - valgrind
-    env:
-    - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
-
-  - os: linux
-    dist: trusty
+    dist: xenial
     compiler: gcc
     addons:
       apt:
@@ -39,7 +21,7 @@ matrix:
     - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
 
   - os: linux
-    dist: trusty
+    dist: xenial
     compiler: gcc
     addons:
       apt:
@@ -57,7 +39,7 @@ matrix:
     - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
 
   - os: linux
-    dist: trusty
+    dist: xenial
     compiler: gcc
     addons:
       apt:
@@ -75,70 +57,31 @@ matrix:
     - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
 
   - os: linux
-    dist: trusty
-    compiler: clang
+    dist: xenial
+    compiler: gcc
     addons:
       apt:
         sources:
         - ubuntu-toolchain-r-test
-        - llvm-toolchain-trusty-3.5
         packages:
         - automake
         - autoconf
-        - clang-3.5
         - cppcheck
+        - g++-8
         - libboost-test-dev
         - make
         - valgrind
     env:
-    - MATRIX_EVAL="CC=clang-3.5 && CXX=clang++-3.5"
+    - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
 
   - os: linux
-    dist: trusty
+    dist: xenial
     compiler: clang
     addons:
       apt:
         sources:
         - ubuntu-toolchain-r-test
-        - llvm-toolchain-trusty-3.6
-        packages:
-        - automake
-        - autoconf
-        - clang-3.6
-        - cppcheck
-        - libboost-test-dev
-        - make
-        - valgrind
-    env:
-    - MATRIX_EVAL="CC=clang-3.6 && CXX=clang++-3.6"
-
-  - os: linux
-    dist: trusty
-    compiler: clang
-    addons:
-      apt:
-        sources:
-        - ubuntu-toolchain-r-test
-        - llvm-toolchain-precise-3.7
-        packages:
-        - automake
-        - autoconf
-        - clang-3.7
-        - cppcheck
-        - libboost-test-dev
-        - make
-        - valgrind
-    env:
-    - MATRIX_EVAL="CC=clang-3.7 && CXX=clang++-3.7"
-
-  - os: linux
-    dist: trusty
-    compiler: clang
-    addons:
-      apt:
-        sources:
-        - ubuntu-toolchain-r-test
-        - llvm-toolchain-trusty-3.8
+        - llvm-toolchain-xenial-3.8
         packages:
         - automake
         - autoconf
@@ -151,13 +94,13 @@ matrix:
     - MATRIX_EVAL="CC=clang-3.8 && CXX=clang++-3.8"
 
   - os: linux
-    dist: trusty
+    dist: xenial
     compiler: clang
     addons:
       apt:
         sources:
         - ubuntu-toolchain-r-test
-        - llvm-toolchain-trusty-3.9
+        - llvm-toolchain-xenial-3.9
         packages:
         - automake
         - autoconf
@@ -170,13 +113,13 @@ matrix:
     - MATRIX_EVAL="CC=clang && CXX=clang++"
 
   - os: linux
-    dist: trusty
+    dist: xenial
     compiler: clang
     addons:
       apt:
         sources:
         - ubuntu-toolchain-r-test
-        - llvm-toolchain-trusty-4.0
+        - llvm-toolchain-xenial-4.0
         packages:
         - automake
         - autoconf
@@ -189,13 +132,13 @@ matrix:
     - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
 
   - os: linux
-    dist: trusty
+    dist: xenial
     compiler: clang
     addons:
       apt:
         sources:
         - ubuntu-toolchain-r-test
-        - llvm-toolchain-trusty-5.0
+        - llvm-toolchain-xenial-5.0
         packages:
         - automake
         - autoconf
@@ -206,6 +149,63 @@ matrix:
         - valgrind
     env:
     - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
+
+  - os: linux
+    dist: xenial
+    compiler: clang
+    addons:
+      apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        - llvm-toolchain-xenial-6.0
+        packages:
+        - automake
+        - autoconf
+        - clang-6.0
+        - cppcheck
+        - libboost-test-dev
+        - make
+        - valgrind
+    env:
+    - MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
+
+  - os: linux
+    dist: xenial
+    compiler: clang
+    addons:
+      apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        - llvm-toolchain-xenial-7
+        packages:
+        - automake
+        - autoconf
+        - clang-7
+        - cppcheck
+        - libboost-test-dev
+        - make
+        - valgrind
+    env:
+    - MATRIX_EVAL="CC=clang-7 && CXX=clang++-7"
+
+  - os: linux
+    dist: xenial
+    compiler: clang
+    addons:
+      apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        - llvm-toolchain-xenial-8
+        packages:
+        - automake
+        - autoconf
+        - clang-8
+        - cppcheck
+        - libboost-test-dev
+        - make
+        - valgrind
+    env:
+    - MATRIX_EVAL="CC=clang-8 && CXX=clang++-8"
 
 before_install:
 - eval "${MATRIX_EVAL}"
@@ -219,6 +219,7 @@ script:
 - ./configure
 - make
 - make check
+- ${CXX} --version
 
 after_success:
 - if [[ "${CXX}" == "g++" ]]; then

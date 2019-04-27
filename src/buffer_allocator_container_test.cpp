@@ -127,14 +127,15 @@ BOOST_AUTO_TEST_CASE( stl_string_copy )
     BOOST_REQUIRE_EQUAL(str1, str2);
     BOOST_REQUIRE_EQUAL(str1, "Hello, world!");
     BOOST_REQUIRE_EQUAL(str2, "Hello, world!");
-    // basic_strings are reference-counted, so even after str1 is cleared, str2
-    // will still hold the value but pointing to str1's buffer1.  If we messed
-    // with str1's underlying buffer1, str2 will see the value and gets screwed.
+
+    // basic_string used to be reference-counted and copies on
+    // write, but it seem like the behavior changed.
     str1.clear();
     memset(buffer1, 0, sizeof(buffer1));
     BOOST_REQUIRE(str1.empty());
-    BOOST_REQUIRE_EQUAL(str2.length(), 0);
-    BOOST_REQUIRE_NE(str2, "Hello, world!");
+    BOOST_REQUIRE_EQUAL(str1.length(), 0);
+    BOOST_REQUIRE_EQUAL(str2.length(), strlen("Hello, world!"));
+    BOOST_REQUIRE_EQUAL(str2, "Hello, world!");
 
     // basic_string copies on write, if we changed str2, it would stop using
     // str1's buffer1 and uses its own buffer2.

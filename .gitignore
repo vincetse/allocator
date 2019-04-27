@@ -1,42 +1,140 @@
+# binaries
+buffer_allocator_test
+buffer_allocator_container_test
+
+# misc
+*.log
+*.trs
+Makefile
+.deps
+
+# Created by https://www.gitignore.io/api/vim,c++,gcov,valgrind,autotools
+# Edit at https://www.gitignore.io/?templates=vim,c++,gcov,valgrind,autotools
+
+### Autotools ###
+# http://www.gnu.org/software/automake
+
+Makefile.in
+/ar-lib
+/mdate-sh
+/py-compile
+/test-driver
+/ylwrap
+
+# http://www.gnu.org/software/autoconf
+
+autom4te.cache
+/autoscan.log
+/autoscan-*.log
+/aclocal.m4
+/compile
+/config.guess
+/config.h.in
+/config.log
+/config.status
+/config.sub
+/configure
+/configure.scan
+/depcomp
+/install-sh
+/missing
+/stamp-h1
+
+# https://www.gnu.org/software/libtool/
+
+/ltmain.sh
+
+# http://www.gnu.org/software/texinfo
+
+/texinfo.tex
+
+# http://www.gnu.org/software/m4/
+
+m4/libtool.m4
+m4/ltoptions.m4
+m4/ltsugar.m4
+m4/ltversion.m4
+m4/lt~obsolete.m4
+
+### Autotools Patch ###
+
+### C++ ###
+# Prerequisites
+*.d
+
 # Compiled Object files
 *.slo
 *.lo
 *.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
 
 # Compiled Dynamic libraries
 *.so
 *.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
 
 # Compiled Static libraries
 *.lai
 *.la
 *.a
+*.lib
 
-# Autotools files
-*.in
-config.h
-config.h.*
-autom4te.cache
-aclocal.m4
-Makefile
-.deps
-configure
-config.log
-config.status
-stamp-h1
-AUTHORS
-ChangeLog
-INSTALL
-README
-missing
-install-sh
-NEWS
-depcomp
-ltmain.sh
+# Executables
+*.exe
+*.out
+*.app
 
-# VIM
-*.swp
+### Gcov ###
+# gcc coverage testing tool files
 
-# binaries
-buffer_allocator_test
-buffer_allocator_container_test
+*.gcno
+*.gcda
+*.gcov
+
+### Valgrind ###
+# Callgrind output files
+callgrind.out
+callgrind.out.*
+
+# Cachegrind output files
+cachegrind.out
+cachegrind.out.*
+
+# Massif output files
+massif.out
+massif.out.*
+
+# BBV output files
+bb.out
+bb.out.*
+
+
+
+### Vim ###
+# Swap
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+# Session
+Session.vim
+
+# Temporary
+.netrwhist
+*~
+# Auto-generated tag files
+tags
+# Persistent undo
+[._]*.un~
+
+# End of https://www.gitignore.io/api/vim,c++,gcov,valgrind,autotools
