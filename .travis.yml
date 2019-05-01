@@ -13,6 +13,24 @@ matrix:
         - automake
         - autoconf
         - cppcheck
+        - g++
+        - libboost-test-dev
+        - make
+        - valgrind
+    env:
+    - MATRIX_EVAL="CC=gcc && CXX=g++"
+
+  - os: linux
+    dist: xenial
+    compiler: gcc
+    addons:
+      apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        packages:
+        - automake
+        - autoconf
+        - cppcheck
         - g++-5
         - libboost-test-dev
         - make
