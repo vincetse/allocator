@@ -33,7 +33,7 @@ jobs:
 
       - name: Install packages
         run: |
-          sudo apt-get -qq -y \
+          sudo apt-get install -qq -y \
             ${{ env.packages }}
         env:
           DEBIAN_FRONTEND: "noninteractive"
