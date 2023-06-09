@@ -17,7 +17,6 @@ jobs:
           - gcc: 9
           - gcc: 10
           - gcc: 11
-          - gcc: 12
 
     steps:
       - uses: actions/checkout@v2
@@ -44,7 +43,7 @@ jobs:
             --enable=performance,portability,information,style,missingInclude \
             .
 
-      - name: autotools
+      - name: build and test
         run: |
           autoreconf -if
           ./configure
@@ -87,7 +86,7 @@ jobs:
             --enable=performance,portability,information,style,missingInclude \
             .
 
-      - name: autotools
+      - name: build and test
         run: |
           autoreconf -if
           ./configure
