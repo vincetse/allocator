@@ -2,13 +2,21 @@ on:
   - push
   - pull_request
 
+env:
+  packages: automake autoconf cppcheck libboost-test-dev make valgrind
+
 jobs:
-  ubuntu-20_04:
+  focal:
     runs-on: "ubuntu-20.04"
     strategy:
       fail-fast: true
       matrix:
-        version: [7, 8, 9, 10, 11]
+        - gcc: 7
+        - gcc: 8
+        - gcc: 9
+        - gcc: 10
+        - gcc: 11
+        - gcc: 12
 
     steps:
       - uses: actions/checkout@v2
@@ -16,17 +24,41 @@ jobs:
       - name: Install GCC
         uses: egor-tensin/setup-gcc@v1
         with:
-          version: ${{ matrix.version }}
+          version: ${{ matrix.gcc }}
 
-      - run: |
+      - name: Show G++ version
+        run: |
           g++ --version
 
-  ubuntu-22_04:
+      - name: Install packages
+        run: |
+          sudo apt-get -qq -y \
+            ${{ env.packages }}
+        env:
+          DEBIAN_FRONTEND: "noninteractive"
+
+      - name: cppcheck
+        run: |
+          cppcheck \
+            --enable=performance,portability,information,style,missingInclude \
+            .
+
+      - name: autotools
+        run: |
+          autoreconf -if
+          ./configure
+          make
+          make check
+
+  jammy:
     runs-on: "ubuntu-22.04"
     strategy:
       fail-fast: true
       matrix:
-        version: [9, 10, 11, 12]
+        - gcc: 9
+        - gcc: 10
+        - gcc: 11
+        - gcc: 12
 
     steps:
       - uses: actions/checkout@v2
@@ -34,7 +66,8 @@ jobs:
       - name: Install GCC
         uses: egor-tensin/setup-gcc@v1
         with:
-          version: ${{ matrix.version }}
+          version: ${{ matrix.gcc }}
 
-      - run: |
+      - name: Show G++ version
+        run: |
           g++ --version
