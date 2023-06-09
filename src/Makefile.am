@@ -1,4 +1,4 @@
-TESTS_ENVIRONMENT=valgrind --show-reachable=yes --leak-check=full --error-exitcode=1 --errors-for-leak-kinds=definite
+TESTS_ENVIRONMENT=valgrind --show-reachable=yes --leak-check=full --error-exitcode=1 --errors-for-leak-kinds=definite --gen-suppressions=all
 
 check_PROGRAMS= \
     buffer_allocator_test \
