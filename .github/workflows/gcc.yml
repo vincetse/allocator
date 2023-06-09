@@ -86,9 +86,13 @@ jobs:
             --enable=performance,portability,information,style,missingInclude \
             .
 
-      - name: build and test
+      - name: build
         run: |
           autoreconf -if
           ./configure
           make
+
+      - name: tests and valgrind
+        run: |
           make check
+        shell: "sh"
