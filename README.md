@@ -1,4 +1,4 @@
-[![Build Status](https://github.com/vincetse/allocator/actions/workflows/ghcr.yml/badge.svg?branch=master)]
+[![Build Status](https://github.com/vincetse/allocator/actions/workflows/gcc.yml/badge.svg?branch=master)]
 [![Coverage Status](https://coveralls.io/repos/github/vincetse/allocator/badge.svg?branch=master)](https://coveralls.io/github/vincetse/allocator?branch=master)
 
 memory-allocators
