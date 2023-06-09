@@ -3,12 +3,30 @@ on:
   - pull_request
 
 jobs:
-  build-and-test:
-    runs-on: ubuntu-latest
+  ubuntu-20.04:
+    runs-on: ubuntu-20.04
     strategy:
       fail-fast: true
       matrix:
-        version: [5, 6, 7, 8, 9, 10, 11, 12]
+        version: [7, 8, 9, 10, 11]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install GCC
+        uses: egor-tensin/setup-gcc@v1
+        with:
+          version: ${{ matrix.version }}
+
+      - run: |
+          g++ --version
+
+  ubuntu-22.04:
+    runs-on: ubuntu-22.04
+    strategy:
+      fail-fast: true
+      matrix:
+        version: [9, 10, 11, 12]
 
     steps:
       - uses: actions/checkout@v2
