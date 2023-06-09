@@ -73,3 +73,23 @@ jobs:
       - name: Show G++ version
         run: |
           g++ --version
+
+      - name: Install packages
+        run: |
+          sudo apt-get install -qq -y \
+            ${{ env.packages }}
+        env:
+          DEBIAN_FRONTEND: "noninteractive"
+
+      - name: cppcheck
+        run: |
+          cppcheck \
+            --enable=performance,portability,information,style,missingInclude \
+            .
+
+      - name: autotools
+        run: |
+          autoreconf -if
+          ./configure
+          make
+          make check
