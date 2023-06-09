@@ -19,50 +19,7 @@ jobs:
           - gcc: 11
 
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Install GCC
-        uses: egor-tensin/setup-gcc@v1
-        with:
-          version: ${{ matrix.gcc }}
-
-      - name: Show G++ version
-        run: |
-          g++ --version
-
-      - name: Install packages
-        run: |
-          sudo apt-get install -qq -y \
-            ${{ env.packages }}
-        env:
-          DEBIAN_FRONTEND: "noninteractive"
-
-      - name: cppcheck
-        run: |
-          cppcheck \
-            --enable=performance,portability,information,style,missingInclude \
-            .
-
-      - name: build and test
-        run: |
-          autoreconf -if
-          ./configure
-          make
-          make check
-
-  jammy:
-    runs-on: "ubuntu-22.04"
-    strategy:
-      fail-fast: true
-      matrix:
-        include:
-          - gcc: 9
-          - gcc: 10
-          - gcc: 11
-          - gcc: 12
-
-    steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Install GCC
         uses: egor-tensin/setup-gcc@v1
@@ -95,4 +52,49 @@ jobs:
       - name: tests and valgrind
         run: |
           make check
-        shell: "sh"
+
+  jammy:
+    runs-on: "ubuntu-22.04"
+    strategy:
+      fail-fast: true
+      matrix:
+        include:
+          - gcc: 9
+          - gcc: 10
+          - gcc: 11
+          - gcc: 12
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install GCC
+        uses: egor-tensin/setup-gcc@v1
+        with:
+          version: ${{ matrix.gcc }}
+
+      - name: Show G++ version
+        run: |
+          g++ --version
+
+      - name: Install packages
+        run: |
+          sudo apt-get install -qq -y \
+            ${{ env.packages }}
+        env:
+          DEBIAN_FRONTEND: "noninteractive"
+
+      - name: cppcheck
+        run: |
+          cppcheck \
+            --enable=performance,portability,information,style,missingInclude \
+            .
+
+      - name: build
+        run: |
+          autoreconf -if
+          ./configure
+          make
+
+      - name: tests and valgrind
+        run: |
+          make check
