@@ -1,0 +1,22 @@
+on:
+  - push
+  - pull_request
+
+jobs:
+  build-and-test
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        version: [5, 6, 7, 8, 9, 10, 11, 12]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install GCC
+        uses: egor-tensin/setup-gcc@v1
+        with:
+          version: ${{ matrix.version }}
+
+      - runs: |
+          g++ --version
