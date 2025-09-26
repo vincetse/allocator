@@ -1,0 +1,101 @@
+name: GCC
+on:
+  - push
+  - pull_request
+
+env:
+  packages: automake autoconf cppcheck libboost-test-dev make valgrind
+
+jobs:
+  jammy:
+    runs-on: "ubuntu-22.04"
+    strategy:
+      fail-fast: true
+      matrix:
+        include:
+          - gcc: 9
+          - gcc: 10
+          - gcc: 11
+          - gcc: 12
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install GCC
+        uses: egor-tensin/setup-gcc@v1
+        with:
+          version: ${{ matrix.gcc }}
+
+      - name: Show G++ version
+        run: |
+          g++ --version
+
+      - name: Install packages
+        run: |
+          sudo apt-get install -qq -y \
+            ${{ env.packages }}
+        env:
+          DEBIAN_FRONTEND: "noninteractive"
+
+      - name: cppcheck
+        run: |
+          cppcheck \
+            --enable=performance,portability,information,style,missingInclude \
+            .
+
+      - name: build
+        run: |
+          autoreconf -if
+          ./configure
+          make
+
+      - name: tests and valgrind
+        run: |
+          make check
+
+  latest:
+    runs-on: "ubuntu-latest"
+    strategy:
+      fail-fast: true
+      matrix:
+        include:
+          - gcc: 9
+          - gcc: 10
+          - gcc: 11
+          - gcc: 12
+          - gcc: 13
+          - gcc: 14
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install GCC
+        uses: egor-tensin/setup-gcc@v1
+        with:
+          version: ${{ matrix.gcc }}
+
+      - name: Show G++ version
+        run: |
+          g++ --version
+
+      - name: Install packages
+        run: |
+          sudo apt-get install -qq -y \
+            ${{ env.packages }}
+        env:
+          DEBIAN_FRONTEND: "noninteractive"
+
+      - name: cppcheck
+        run: |
+          cppcheck \
+            --enable=performance,portability,information,style,missingInclude \
+            .
+
+      - name: build
+        run: |
+          autoreconf -if
+          ./configure
+          make
+
+      - name: tests and valgrind
+        run: |
+          make check

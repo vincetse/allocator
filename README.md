@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/vincetse/allocator.svg?branch=master)](https://travis-ci.org/vincetse/allocator)
+[![Build Status](https://github.com/vincetse/allocator/actions/workflows/gcc.yml/badge.svg?branch=master)](https://github.com/vincetse/allocator/actions/workflows/gcc.yml/badge.svg?branch=master)
 [![Coverage Status](https://coveralls.io/repos/github/vincetse/allocator/badge.svg?branch=master)](https://coveralls.io/github/vincetse/allocator?branch=master)
 
 memory-allocators
@@ -64,12 +64,12 @@ An example demonstrating how to use buffer_allocator with a `std::vector`.
 
     typedef int data_type;
     typedef lazy::memory::buffer_allocator<data_type> allocator_type;
-    
+
     // create the buffer array where memory will be allocated from
     const size_t num_objects = 3;
     data_type buffer[num_objects];
     allocator_type allocator(buffer, sizeof(buffer));
-    
+
     // now declare a std::vector to allocate memory from the buffer, which in
     // this example lives on the stack (as opposed to the heap).
     std::vector<data_type, allocator_type> vec(allocator)
@@ -83,12 +83,12 @@ We have to use `std::basic_string` instead of `std::string` cos the latter does 
     typedef char data_type;
     typedef lazy::memory::buffer_allocator<data_type> allocator_type;
     typedef std::basic_string<data_type, std::char_traits<data_type>, allocator_type> string_type;
-    
+
     // allocate a buffer to hold the chars
     const size_t buffer_size = 32 * 1024;
     data_type buffer[buffer_size];
     allocator_type allocator(buffer, sizeof(buffer));
-    
+
     // now use the buffer_allocator with a std::basic_string
     string_type str(allocator);
     str = "Hello, world!";
@@ -150,7 +150,7 @@ Writing the example with `std::map` was very enlightening since it taught me abo
     allocator_type allocator(buffer, sizeof(buffer));
     std::less<key_type> cmp;
     map_type m(cmp, allocator);
-    map_type::value_type value(1, 1); 
+    map_type::value_type value(1, 1);
     m.insert(value);
 
 #### std::tr1::unordered_map
@@ -162,7 +162,7 @@ This example shows how to use `buffer_allocator` with `std::tr1::unordered_map`.
     typedef std::pair<const key_type, data_type> value_type;
     typedef lazy::memory::buffer_allocator<value_type> allocator_type;
     typedef std::tr1::unordered_map<key_type, data_type, std::hash<key_type>, std::equal_to<key_type>, allocator_type> map_type;
-    
+
     const size_t buffer_size = 128 * 1024;
     char buffer[buffer_size];
     allocator_type allocator(buffer, sizeof(buffer));

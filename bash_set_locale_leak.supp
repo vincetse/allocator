@@ -1,0 +1,19 @@
+# When building in GitHub Actions with the ubuntu-20.04, valgrind catches
+# a bash memory leak that does not show up in ubuntu-22.04.  See more
+# here: https://lists.gnu.org/archive/html/bug-bash/2015-07/msg00073.html
+#
+#==6480== 8 bytes in 1 blocks are definitely lost in loss record 73 of 414
+#==6480==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+#==6480==    by 0x1984F3: xmalloc (in /usr/bin/bash)
+#==6480==    by 0x19196E: set_default_locale (in /usr/bin/bash)
+#==6480==    by 0x136C8A: main (in /usr/bin/bash)
+#==6480==
+{
+   bash_set_locale
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:malloc
+   fun:xmalloc
+   fun:set_default_locale
+   fun:main
+}
